@@ -1,0 +1,67 @@
+<div class="bg-gray-100 md:p-6">
+  <div class="grid gap-6
+           grid-cols-1 md:grid-cols-6
+           auto-rows-min md:auto-rows-[200px]">
+    <!-- Expense Summary (pie chart) -->
+    <div class="bg-white shadow rounded-2xl p-4 md:col-span-4 md:row-span-2 flex flex-col">
+      <h2 class="text-lg font-semibold mb-4">Expense Summary</h2>
+      <div class="flex items-center justify-center">
+        <!-- fixed max size canvas -->
+        <canvas id="expensePieChart" class="max-w-full max-h-64"></canvas>
+      </div>
+    </div>
+
+
+
+    <!-- Best Products (list) -->
+    <div class="bg-white shadow rounded-2xl p-4 md:col-span-2 md:row-span-2 flex flex-col">
+      <h2 class="text-lg font-semibold mb-4">Best Products</h2>
+      <ul class="space-y-2 overflow-y-auto">
+        <li *ngFor="let product of products; let i = index"
+          class="flex justify-between items-center border-b pb-1 text-sm">
+          <span>{{ i + 1 }}. {{ product.title }}</span>
+          <span class="text-gray-500">SKU: {{ product.sku }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Inventory Status -->
+    <div class="min-h-72 bg-white shadow rounded-2xl p-4 md:col-span-3 flex flex-col">
+      <h2 class="text-lg font-semibold mb-4">Inventory Status</h2>
+
+      <!-- Stock summary -->
+      <div class="grid grid-cols-3 gap-4 text-center mb-4">
+        <div>
+          <p class="text-2xl font-bold">1245</p>
+          <p class="text-gray-500 text-sm">In Stock</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold text-yellow-600">18</p>
+          <p class="text-gray-500 text-sm">Low Stock</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold text-red-600">4</p>
+          <p class="text-gray-500 text-sm">Out of Stock</p>
+        </div>
+      </div>
+
+      <!-- Low stock products list -->
+      <h3 class="text-sm font-semibold mb-2">Low Stock Products</h3>
+      <ul class="space-y-1 overflow-y-auto flex-grow">
+        <li *ngFor="let item of lowStockProducts" class="flex justify-between text-sm border-b pb-1">
+          <span>{{ item.title }}</span>
+          <span class="text-red-600 font-medium">{{ item.stock }} left</span>
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- Sales Summary (line chart) -->
+    <div class="bg-white shadow rounded-2xl p-4 md:col-span-3 md:row-span-2 flex flex-col">
+      <h2 class="text-lg font-semibold mb-4">Sales Summary</h2>
+      <div class="flex-grow flex items-center justify-center">
+        <canvas id="salesLineChart" class="max-w-full max-h-64"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

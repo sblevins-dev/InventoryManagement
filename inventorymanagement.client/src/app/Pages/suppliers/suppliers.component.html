@@ -1,0 +1,33 @@
+<div class="p-4">
+  <h2 class="text-xl font-semibold mb-4">Suppliers</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow rounded-lg">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">ID</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Name</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Contact</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Phone</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Email</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Preferred</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let supplier of suppliers" class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2 text-sm">{{ supplier.id }}</td>
+          <td class="px-4 py-2 text-sm">{{ supplier.name }}</td>
+          <td class="px-4 py-2 text-sm">{{ supplier.contactName }}</td>
+          <td class="px-4 py-2 text-sm">{{ supplier.phone }}</td>
+          <td class="px-4 py-2 text-sm">{{ supplier.email }}</td>
+          <td class="px-4 py-2 text-sm">
+            <span [ngClass]="supplier.preferred ? 'text-green-600 font-semibold' : 'text-gray-500'">
+              {{ supplier.preferred ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td class="px-4 py-2 text-sm">{{ supplier.notes || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

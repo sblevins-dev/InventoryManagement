@@ -1,0 +1,33 @@
+<div class="p-4">
+  <h2 class="text-xl font-semibold mb-4">Orders</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow rounded-lg">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Order ID</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Supplier</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Order Date</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Expected Delivery</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Status</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Total Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders" class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2 text-sm">{{ order.id }}</td>
+          <td class="px-4 py-2 text-sm">{{ order.supplier }}</td>
+          <td class="px-4 py-2 text-sm">{{ order.orderDate | date }}</td>
+          <td class="px-4 py-2 text-sm">{{ order.expectedDelivery | date }}</td>
+          <td class="px-4 py-2 text-sm">
+            <span [ngClass]="{
+              'text-yellow-600': order.status === 'Pending',
+              'text-green-600': order.status === 'Received',
+              'text-red-600': order.status === 'Cancelled'
+            }">{{ order.status }}</span>
+          </td>
+          <td class="px-4 py-2 text-sm">${{ order.totalCost }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
