@@ -8,9 +8,10 @@ import { SignInComponent } from './Pages/sign-in/sign-in.component';
 import { LandingComponent } from './Pages/landing/landing.component';
 import { authGuard } from './Guards/auth.guard';
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
+import { homeRedirectGuard } from './Guards/home-redirect.guard';
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: '', component: LandingComponent, canActivate: [homeRedirectGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'sign-in', component: SignInComponent },
   { path: 'products', component: ProductsComponent, canActivate: [authGuard] },

@@ -1,8 +1,9 @@
-﻿<!-- Layout for protected routes -->
+﻿<!-- Protected layout -->
 <div *ngIf="showLayout" class="flex flex-col h-screen w-full">
   <app-nav (toggleSidebar)="isSidebarOpen = !isSidebarOpen"></app-nav>
-  
+
   <div class="flex flex-1 overflow-hidden">
+    <!-- Desktop Sidebar -->
     <aside class="hidden md:flex flex-col w-64 bg-white shadow-md h-full">
       <nav class="flex-1 p-4 space-y-2">
         <a routerLink="/dashboard" class="block p-2 rounded hover:bg-gray-100">Dashboard</a>
@@ -20,9 +21,31 @@
   </div>
 
   <app-footer></app-footer>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="fixed inset-0 z-50 md:hidden flex pointer-events-none"
+       [class.pointer-events-auto]="isSidebarOpen">
+    <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+         [class.opacity-0]="!isSidebarOpen"
+         (click)="isSidebarOpen = false"></div>
+
+    <aside class="relative w-64 bg-white shadow-md p-4 h-full transform transition-transform duration-300 ease-in-out"
+           [class.-translate-x-full]="!isSidebarOpen"
+           [class.translate-x-0]="isSidebarOpen">
+      <div class="flex justify-end mb-4">
+        <button (click)="isSidebarOpen = false">✖</button>
+      </div>
+      <nav class="flex-1 space-y-2 overflow-y-auto">
+        <a routerLink="/dashboard" class="block p-2 rounded hover:bg-gray-100" (click)="isSidebarOpen = false">Dashboard</a>
+        <a routerLink="/orders" class="block p-2 rounded hover:bg-gray-100" (click)="isSidebarOpen = false">Orders</a>
+        <a routerLink="/suppliers" class="block p-2 rounded hover:bg-gray-100" (click)="isSidebarOpen = false">Suppliers</a>
+        <a routerLink="/products" class="block p-2 rounded hover:bg-gray-100" (click)="isSidebarOpen = false">Products</a>
+      </nav>
+    </aside>
+  </div>
 </div>
 
-<!-- Public routes (landing, sign-in, 404, etc.) -->
+<!-- Public pages (landing, sign-in, 404) -->
 <div *ngIf="!showLayout">
   <router-outlet></router-outlet>
 </div>
