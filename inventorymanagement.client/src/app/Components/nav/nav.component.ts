@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +8,16 @@ import { Component } from '@angular/core';
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
-  toggleMenu(): void {
-    const menu = document.getElementById('mobile-menu');
-    if (menu) {
-      menu.classList.toggle('hidden');
-    }
+  @Output() toggleSidebar = new EventEmitter<void>();
+  router: Router = inject(Router);
+  authService = inject(AuthService);
+
+  onToggleClick() {
+    this.toggleSidebar.emit();
+  }
+
+  onLogoutClick() {
+    this.authService.logout();
+    this.router.navigate(['/sign-in']);
   }
 }

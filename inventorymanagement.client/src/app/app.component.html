@@ -1,16 +1,28 @@
-﻿<div class="flex h-screen w-full overflow-hidden">
+﻿<!-- Layout for protected routes -->
+<div *ngIf="showLayout" class="flex flex-col h-screen w-full">
+  <app-nav (toggleSidebar)="isSidebarOpen = !isSidebarOpen"></app-nav>
+  
+  <div class="flex flex-1 overflow-hidden">
+    <aside class="hidden md:flex flex-col w-64 bg-white shadow-md h-full">
+      <nav class="flex-1 p-4 space-y-2">
+        <a routerLink="/dashboard" class="block p-2 rounded hover:bg-gray-100">Dashboard</a>
+        <a routerLink="/orders" class="block p-2 rounded hover:bg-gray-100">Orders</a>
+        <a routerLink="/suppliers" class="block p-2 rounded hover:bg-gray-100">Suppliers</a>
+        <a routerLink="/products" class="block p-2 rounded hover:bg-gray-100">Products</a>
+      </nav>
+    </aside>
 
-    <div class="flex grow flex-col content-start overflow-hidden bg-card">
-        <!-- Header -->
-        <app-nav></app-nav>
-        <!-- main content -->
-        <div id="main-content"
-            class="scrollbar-thumb-rounded scrollbar-track-rounded grow overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted bg-gray-100">
-            <div class="mx-auto px-4 py-4 sm:px-8 lg:container">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+    <main class="flex-1 overflow-auto bg-gray-100">
+      <div class="mx-auto px-4 py-4 sm:px-8 lg:container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
 
-        <app-footer></app-footer>
-    </div>
+  <app-footer></app-footer>
+</div>
+
+<!-- Public routes (landing, sign-in, 404, etc.) -->
+<div *ngIf="!showLayout">
+  <router-outlet></router-outlet>
 </div>

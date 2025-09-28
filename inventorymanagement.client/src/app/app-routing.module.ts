@@ -4,13 +4,19 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { ProductsComponent } from './Pages/products/products.component';
 import { OrdersComponent } from './Pages/orders/orders.component';
 import { SuppliersComponent } from './Pages/suppliers/suppliers.component';
+import { SignInComponent } from './Pages/sign-in/sign-in.component';
+import { LandingComponent } from './Pages/landing/landing.component';
+import { authGuard } from './Guards/auth.guard';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'products', component: ProductsComponent},
-  { path: 'orders', component: OrdersComponent},
-  { path: 'suppliers', component: SuppliersComponent}
+  { path: '', component: LandingComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'products', component: ProductsComponent, canActivate: [authGuard] },
+  { path: 'orders', component: OrdersComponent, canActivate: [authGuard] },
+  { path: 'suppliers', component: SuppliersComponent, canActivate: [authGuard] },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

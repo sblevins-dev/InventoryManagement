@@ -1,37 +1,14 @@
-<nav class="bg-gray-800 text-white w-full">
-  <div class="px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo / Brand -->
-      <div class="flex-shrink-0">
-        <a href="#" class="text-xl font-bold text-white">InventoryApp</a>
-      </div>
+<nav class="bg-white shadow px-4 py-4 flex justify-between items-center border-b">
+  <!-- Sidebar toggle button -->
+  <button (click)="onToggleClick()" class="md:hidden text-gray-600 hover:text-gray-800">
+    ☰
+  </button>
 
-      <!-- Desktop Links -->
-      <div class="hidden md:flex space-x-6">
-        <a href="/dashboard" class="hover:text-gray-300">Dashboard</a>
-        <a href="/products" class="hover:text-gray-300">Products</a>
-        <a href="/orders" class="hover:text-gray-300">Orders</a>
-        <a href="/suppliers" class="hover:text-gray-300">Suppliers</a>
-      </div>
+  <h1 class="text-lg font-semibold">Inventory App</h1>
 
-      <!-- Profile / Mobile Menu -->
-      <div class="flex items-center">
-        <div class="md:hidden">
-          <button id="mobile-menu-button" class="ml-2 focus:outline-none" (click)="toggleMenu()">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden px-2 pt-2 pb-3 space-y-1">
-    <a href="/dashboard" class="block px-3 py-2 rounded-md hover:bg-gray-700">Dashboard</a>
-    <a href="/products" class="block px-3 py-2 rounded-md hover:bg-gray-700">Products</a>
-    <a href="/orders" class="block px-3 py-2 rounded-md hover:bg-gray-700">Orders</a>
-    <a href="/suppliers" class="block px-3 py-2 rounded-md hover:bg-gray-700">Suppliers</a>
+  <!-- Right side options -->
+  <div class="flex space-x-4">
+    <button class="text-sm text-gray-600">Profile</button>
+    <button class="text-sm text-gray-600" (click)="onLogoutClick()">Logout</button>
   </div>
 </nav>

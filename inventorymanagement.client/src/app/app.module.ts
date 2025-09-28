@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,10 @@ import { ProductsComponent } from './Pages/products/products.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { OrdersComponent } from './Pages/orders/orders.component';
 import { SuppliersComponent } from './Pages/suppliers/suppliers.component';
+import { SidebarComponent } from './Components/sidebar/sidebar.component';
+import { SignInComponent } from './Pages/sign-in/sign-in.component';
+import { LandingComponent } from './Pages/landing/landing.component';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +27,14 @@ import { SuppliersComponent } from './Pages/suppliers/suppliers.component';
     FooterComponent,
     OrdersComponent,
     SuppliersComponent,
+    SidebarComponent,
+    SignInComponent,
+    LandingComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule
+    AppRoutingModule, FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
